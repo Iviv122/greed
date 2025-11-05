@@ -7,11 +7,21 @@ var pos : Vector2i
 
 var tween : Tween
 
+func _input(event):
+	if event.is_action_pressed("w"):
+		move(Vector2i.UP)
+	if event.is_action_pressed("s"):
+		move(Vector2i.DOWN)
+	if event.is_action_pressed("a"):
+		move(Vector2i.LEFT)
+	if event.is_action_pressed("d"):
+		move(Vector2i.RIGHT)
+	
+
 func _ready():
 	scale = Vector2(grid.size,grid.size) / texture.get_size()
 	pos = start_pos 
 	global_position = grid.get_pos(pos)
-	moving()
 
 func move(dest : Vector2i):
 	pos += dest
@@ -22,13 +32,12 @@ func move(dest : Vector2i):
 	tween = create_tween().set_parallel()
 
 	var fin_pos = grid.get_pos(pos)
-	tween.tween_property(self,"global_position:x",fin_pos.x,0.1).set_trans(Tween.TRANS_ELASTIC)
+	var delta = fin_pos - global_position
 
-	tween.tween_property(self,"global_position:y",fin_pos.y+grid.size,0.05).set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(self,"global_position:y",fin_pos.y,0.05).set_trans(Tween.TRANS_ELASTIC)
+	var animation_time = 0.3
 
+	tween.tween_property(self,"global_position:x",global_position.x+delta.x,animation_time)
 
-func moving() -> void:
-	await  get_tree().create_timer(0.5).timeout
-	move(Vector2i(-1,-1))
-	moving()
+	tween.tween_property(self,"global_position:y",global_position.y+delta.y-grid.size,animation_time/2)
+	tween.tween_property(self,"global_position:y",global_position.y+delta.y,animation_time/2).set_delay(animation_time/2)
+
