@@ -1,3 +1,25 @@
-[gd_scene format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=5 format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" uid="uid://boawo1rydk3hd" path="res://objects/grid/grid.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://nq5fjvrem8rd" path="res://assets/tiles/example_tile.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://lcw77nugwp3v" path="res://objects/player/cursor.gd" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_1bvp3"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("1_ig7tw")
+test_tile = ExtResource("2_0xm2m")
+metadata/_custom_type_script = "uid://boawo1rydk3hd"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Cursor" type="Node2D" parent="." node_paths=PackedStringArray("grid")]
+script = ExtResource("3_h2yge")
+grid = NodePath("../Grid")
+metadata/_custom_type_script = "uid://lcw77nugwp3v"
+
+[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_1bvp3")
