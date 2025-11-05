@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx1mi6qr1gndg"]
+
+[ext_resource type="Script" uid="uid://bcvof0a5hq8bl" path="res://objects/entity/character.gd" id="1_2cvog"]
+
+[node name="Character" type="Sprite2D"]
+script = ExtResource("1_2cvog")
+metadata/_custom_type_script = "uid://bcvof0a5hq8bl"

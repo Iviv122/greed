@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=6 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://boawo1rydk3hd" path="res://objects/grid/grid.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://nq5fjvrem8rd" path="res://assets/tiles/example_tile.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://nq5fjvrem8rd" path="res://assets/prefabs/tiles/example_tile.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://lcw77nugwp3v" path="res://objects/player/cursor.gd" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dx1mi6qr1gndg" path="res://assets/prefabs/character.tscn" id="5_lquwl"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource("1_ig7tw")
+size = 64
 test_tile = ExtResource("2_0xm2m")
 metadata/_custom_type_script = "uid://boawo1rydk3hd"
 
@@ -20,3 +22,10 @@ texture = ExtResource("4_1bvp3")
 script = ExtResource("3_h2yge")
 grid = NodePath("../Grid")
 metadata/_custom_type_script = "uid://lcw77nugwp3v"
+
+[node name="Character" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("5_lquwl")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-267, 287)
+texture = ExtResource("4_1bvp3")
+grid = NodePath("../Grid")
+start_pos = Vector2i(4, 1)

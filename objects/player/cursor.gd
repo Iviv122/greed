@@ -13,5 +13,11 @@ func _input(event):
 		var pos = get_global_mouse_position()
 		pos.x = ceil((pos.x - grid.size / 2.) / grid.size)
 		pos.y = ceil((pos.y - grid.size / 2.) / grid.size)
+		
 		global_position = Vector2(pos.x * grid.size, pos.y * grid.size)
-		print(pos)
+		hide()
+
+		if pos.x >= -grid.map_size.x && pos.x <= grid.map_size.x && pos.y >= -grid.map_size.y && pos.y <= grid.map_size.y:
+			show()
+			print(pos)
+		
