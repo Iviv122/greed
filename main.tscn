@@ -14,12 +14,9 @@ metadata/_custom_type_script = "uid://boawo1rydk3hd"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Cursor" type="Node2D" parent="." node_paths=PackedStringArray("grid")]
+[node name="Cursor" type="Sprite2D" parent="." node_paths=PackedStringArray("grid")]
+modulate = Color(1, 0, 1, 1)
+texture = ExtResource("4_1bvp3")
 script = ExtResource("3_h2yge")
 grid = NodePath("../Grid")
 metadata/_custom_type_script = "uid://lcw77nugwp3v"
-
-[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_1bvp3")
