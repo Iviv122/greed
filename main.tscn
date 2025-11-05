@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=8 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://boawo1rydk3hd" path="res://objects/grid/grid.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://nq5fjvrem8rd" path="res://assets/prefabs/tiles/example_tile.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://lcw77nugwp3v" path="res://objects/player/cursor.gd" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://dx1mi6qr1gndg" path="res://assets/prefabs/character.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://dybcp0hdmgiv3" path="res://objects/entity/player.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bn0cx07xk1x8s" path="res://objects/entity/enemy.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://bb8xnkmjemwe8" path="res://objects/ui/end_turn.gd" id="6_272bh"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,11 +24,30 @@ modulate = Color(1, 0, 1, 1)
 texture = ExtResource("4_1bvp3")
 script = ExtResource("3_h2yge")
 grid = NodePath("../Grid")
-c = NodePath("../Character")
+c = NodePath("../Player")
 metadata/_custom_type_script = "uid://lcw77nugwp3v"
 
-[node name="Character" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("5_lquwl")]
-modulate = Color(1, 0, 0, 1)
+[node name="Player" type="Sprite2D" parent="." node_paths=PackedStringArray("grid")]
+self_modulate = Color(0, 1, 0, 1)
 position = Vector2(-267, 287)
 texture = ExtResource("4_1bvp3")
+script = ExtResource("5_lquwl")
 grid = NodePath("../Grid")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -4.0
+offset_top = -217.0
+offset_right = 82.0
+offset_bottom = -186.0
+text = "Next Turn"
+script = ExtResource("6_272bh")
+metadata/_custom_type_script = "uid://bb8xnkmjemwe8"
+
+[node name="Enemy" type="Sprite2D" parent="." node_paths=PackedStringArray("player", "grid")]
+self_modulate = Color(1, 0, 0, 1)
+texture = ExtResource("4_1bvp3")
+script = ExtResource("6_7mycd")
+player = NodePath("../Player")
+grid = NodePath("../Grid")
+start_pos = Vector2i(2, 2)
+metadata/_custom_type_script = "uid://bn0cx07xk1x8s"

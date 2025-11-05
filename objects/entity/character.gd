@@ -13,6 +13,11 @@ func _ready():
 	pos = start_pos 
 	global_position = grid.get_pos(pos)
 
+	on_spawn()
+
+func on_spawn() -> void:
+	pass
+
 func goto(points : PackedVector2Array) -> void:
 	for i in range(1,points.size()):
 		move(points[i])

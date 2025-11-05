@@ -12,7 +12,7 @@ var pos : Vector2
 func _ready():
 	scale = Vector2(grid.size,grid.size) / texture.get_size()
 
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var m_pos = get_global_mouse_position()
 		pos.x = ceil((m_pos.x - grid.size / 2.) / grid.size)
