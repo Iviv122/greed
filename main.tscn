@@ -12,15 +12,17 @@
 script = ExtResource("1_ig7tw")
 size = 64
 test_tile = ExtResource("2_0xm2m")
+map_size = Vector2i(2, 2)
 metadata/_custom_type_script = "uid://boawo1rydk3hd"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Cursor" type="Sprite2D" parent="." node_paths=PackedStringArray("grid")]
+[node name="Cursor" type="Sprite2D" parent="." node_paths=PackedStringArray("grid", "c")]
 modulate = Color(1, 0, 1, 1)
 texture = ExtResource("4_1bvp3")
 script = ExtResource("3_h2yge")
 grid = NodePath("../Grid")
+c = NodePath("../Character")
 metadata/_custom_type_script = "uid://lcw77nugwp3v"
 
 [node name="Character" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("5_lquwl")]
@@ -28,4 +30,3 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(-267, 287)
 texture = ExtResource("4_1bvp3")
 grid = NodePath("../Grid")
-start_pos = Vector2i(4, 1)
