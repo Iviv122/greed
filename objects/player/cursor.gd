@@ -29,3 +29,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if grid.in_size(npos):
 			c.goto(grid.find_path(c.pos,npos))
 			print(npos, " ", grid.get_id(npos))
+	if event.is_action_pressed("right_click"):
+		var npos : Vector2i = grid.normalize(get_global_mouse_position())
+		if grid.in_size(npos):
+			grid.switch(npos)
+			print("turned off")

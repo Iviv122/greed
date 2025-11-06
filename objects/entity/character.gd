@@ -8,6 +8,7 @@ class_name Character
 var pos : Vector2i
 var tween : Tween
 
+
 func _ready():
 	scale = Vector2(grid.size,grid.size) / texture.get_size()
 	pos = start_pos 

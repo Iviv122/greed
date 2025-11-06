@@ -45,6 +45,18 @@ func is_point_walkable(pos : Vector2) -> bool:
 func in_size(pos : Vector2i) -> bool:
 	return pos.x >= -map_size.x && pos.x <= map_size.x && pos.y >= -map_size.y && pos.y <= map_size.y
 
+func switch(pos : Vector2i) -> void:
+	_astar.set_point_disabled(get_id(pos),!is_enabled(pos))
+
+	var s : Sprite2D = get_child(get_id(pos))
+	if is_enabled(pos):
+		s.self_modulate = Color.RED
+	else:
+		s.self_modulate = Color.GREEN
+
+func is_enabled(pos : Vector2i) -> bool:
+	return _astar.is_point_disabled(get_id(pos))
+
 func get_id(pos: Vector2i) -> int:
 	var width = map_size.x * 2 + 1
 	var x_index = pos.x + map_size.x
