@@ -4,10 +4,12 @@ class_name Grid
 @export var size : int = 32
 @export var test_tile : PackedScene
 @export var map_size : Vector2i = Vector2i(5,5) 
+@export var characters : Array[Character]
 
 var id : int = 0	
 
 var _astar := AStar2D.new() 
+
 
 func _ready():
 

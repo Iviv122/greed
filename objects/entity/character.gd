@@ -5,8 +5,11 @@ class_name Character
 @export var start_pos :  Vector2i
 @export var animation_time = 0.2
 
+
+var state : State
 var pos : Vector2i
 var tween : Tween
+
 
 
 func _ready():
@@ -15,14 +18,19 @@ func _ready():
 	global_position = grid.get_pos(pos)
 
 	on_spawn()
+	state = State.Idle
 
 func on_spawn() -> void:
 	pass
 
-func goto(points : PackedVector2Array) -> void:
+func goto(points : PackedVector2Array) -> void:	
+	if state == State.Moving:
+		return
+	state = State.Moving
 	for i in range(1,points.size()):
 		move(points[i])
 		await get_tree().create_timer(animation_time).timeout
+	state = State.Idle
 
 func move(dest : Vector2i):
 	pos = dest
@@ -41,3 +49,8 @@ func move(dest : Vector2i):
 
 	tween.tween_property(self,"global_position:y",global_position.y+delta.y-grid.size,animation_time/2).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self,"global_position:y",global_position.y+delta.y,animation_time/2).set_delay(animation_time/2).set_trans(Tween.TRANS_SINE)
+
+enum State{
+	Idle,
+	Moving
+}

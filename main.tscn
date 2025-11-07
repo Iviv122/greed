@@ -10,21 +10,23 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Grid" type="Node2D" parent="."]
+[node name="Grid" type="Node2D" parent="." node_paths=PackedStringArray("characters")]
 script = ExtResource("1_ig7tw")
 size = 64
 test_tile = ExtResource("2_0xm2m")
 map_size = Vector2i(2, 2)
+characters = [NodePath("../Player"), NodePath("../Enemy")]
 metadata/_custom_type_script = "uid://boawo1rydk3hd"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Cursor" type="Sprite2D" parent="." node_paths=PackedStringArray("grid", "c")]
+[node name="Cursor" type="Sprite2D" parent="." node_paths=PackedStringArray("grid", "c", "line")]
 modulate = Color(1, 0, 1, 1)
 texture = ExtResource("4_1bvp3")
 script = ExtResource("3_h2yge")
 grid = NodePath("../Grid")
 c = NodePath("../Player")
+line = NodePath("../Line2D")
 metadata/_custom_type_script = "uid://lcw77nugwp3v"
 
 [node name="Player" type="Sprite2D" parent="." node_paths=PackedStringArray("grid")]
@@ -51,3 +53,5 @@ player = NodePath("../Player")
 grid = NodePath("../Grid")
 start_pos = Vector2i(2, 2)
 metadata/_custom_type_script = "uid://bn0cx07xk1x8s"
+
+[node name="Line2D" type="Line2D" parent="."]
